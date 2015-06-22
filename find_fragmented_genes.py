@@ -33,7 +33,7 @@ def parse_gff_interval(infile, feature_type=None):
         if line.startswith('#'):
             continue
         fields = line.split('\t')
-        assert len(fields) == 9, "Invalid GFF3 format at line {}:\n{}".format(count, line)
+        assert len(fields) == 9, "Invalid GFF3 format at line {} in {}:\n{}".format(count, infile.name, line)
         # filter by feature type
         if feature_type is not None and fields[2] != feature_type:
             continue
