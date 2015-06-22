@@ -30,7 +30,7 @@ def parse_gff_interval(infile, feature_type=None):
     count = 0
     for line in infile:
         count += 1
-        if line.startswith('#'):
+        if line.startswith('#') or line.strip() == '':
             continue
         fields = line.split('\t')
         assert len(fields) == 9, "Invalid GFF3 format at line {} in {}:\n{}".format(count, infile.name, line)
