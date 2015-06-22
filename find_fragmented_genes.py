@@ -71,7 +71,8 @@ def print_fragmented_genes(gene_gff3, protein_gff3, output_file):
 
     fragment_set = set()
     for interval in parse_gff_interval(protein_gff3, feature_type='transcript'):
-        genes = gene_trees[interval.contig_id][interval.strand].find(interval.start, interval.end)
+        # default to empty IntervalTree()
+        genes = gene_trees.get(interval.contig_id, dict()).get(interval.strand,IntervalTree()).find(interval.start, interval.end)
         if len(genes) > 1:
             fragment_set.add(tuple([gene.feature_id for gene in genes]))
 
